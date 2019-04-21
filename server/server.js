@@ -14,6 +14,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+
 app.get('/competencias', controller.getCompetencias);
+app.get('/competencias/:id/peliculas', (controller.getCompetencia));
+
 
 app.listen(process.env.PORT, () => console.log(`Server listening on port ${process.env.PORT}`));

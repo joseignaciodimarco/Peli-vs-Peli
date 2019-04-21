@@ -17,7 +17,7 @@ function CompetenciasController () {
 
 	this.cargarCompetencias = function (data){
 		// data es el listado de competencias que retornó la api (un objeto json)
-		
+
 		// Oculto la plantilla
 		$(".competenciaPlantilla").hide();
 		// Se recorren iterativamente, uno a uno, los resultados de competencias
@@ -81,7 +81,7 @@ function CompetenciasController () {
 		// Se obtienen de la api las opciones de películas
 		var opciones = $.getJSON(server+"/competencias/"+id+"/peliculas",
 	    function(data) {
-	    	// Se cargan las opciones en el DOM
+			// Se cargan las opciones en el DOM
 	    	self.cargarOpciones(id, data);
 	    });
 	},
