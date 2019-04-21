@@ -1,4 +1,4 @@
-var con = require('../lib/dbController');
+var con = require('../../services/dbController');
 
 getCompetencias = (req, res) => {
     con.query('SELECT * FROM competencias', (err, result, fields) => {
