@@ -107,7 +107,6 @@ CREATE TABLE `competencia` (
   KEY `c_genero_id` (`genero_id`),
   CONSTRAINT `c_genero_id` FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`))ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 LOCK TABLES `competencia` WRITE;
 INSERT INTO competencia (nombre, genero_id)
 VALUES ('¿Cuál es la mejor película de acción?', 1), 
@@ -116,3 +115,14 @@ VALUES ('¿Cuál es la mejor película de acción?', 1),
 ('¿Cual es la mejor película animada?', 4),
 ('¿Cuál es el mejor thriller?', 15);
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `voto`;
+CREATE TABLE `voto` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `competencia_id` INT(11) unsigned NOT NULL,
+  `pelicula_id` INT(11) unsigned NOT NULL,
+   PRIMARY KEY (`id`),
+   KEY `v_pelicula_id` (`pelicula_id`),
+   KEY `v_competencia_id` (`competencia_id`),
+  CONSTRAINT `v_pelicula_id` FOREIGN KEY (`pelicula_id`) REFERENCES `pelicula` (`id`),
+  CONSTRAINT `v_competencia_id` FOREIGN KEY (`competencia_id`) REFERENCES `competencia` (`id`))ENGINE=InnoDB DEFAULT CHARSET=latin1;
