@@ -103,9 +103,15 @@ CREATE TABLE `competencia` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(250) NOT NULL,
   `genero_id` INT(11) unsigned NULL,
+  `director_id` INT(11) unsigned NULL,
+  `actor_id` INT(11) unsigned NULL,
   PRIMARY KEY (`id`),
   KEY `c_genero_id` (`genero_id`),
-  CONSTRAINT `c_genero_id` FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`))ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `c_director_id` (`director_id`),
+  KEY `c_actor_id` (`actor_id`),
+  CONSTRAINT `c_genero_id` FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`),
+  CONSTRAINT `c_director_id` FOREIGN KEY (`director_id`) REFERENCES `director` (`id`),
+  CONSTRAINT `c_actor_id` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`))ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `competencia` WRITE;
 INSERT INTO competencia (nombre, genero_id)
@@ -119,7 +125,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `voto`;
 CREATE TABLE `voto` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `competencia_id` INT(11) unsigned NOT NULL,
+  `competencia_id` INT(11) NOT NULL,
   `pelicula_id` INT(11) unsigned NOT NULL,
    PRIMARY KEY (`id`),
    KEY `v_pelicula_id` (`pelicula_id`),

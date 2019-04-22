@@ -16,8 +16,15 @@ app.use((req, res, next) => {
 });
 
 app.get('/competencias', controller.getCompetencias);
+app.get('/generos', controller.getGeneros);
+app.get('/directores', controller.getDirectores);
+app.get('/actores', controller.getActores);
 app.get('/competencias/:id/peliculas', controller.getCompetencia);
 app.get('/competencias/:id/resultados', controller.getResultados);
 app.post('/competencias/:id/voto',controller.votar);
+app.post('/competencias',controller.cargaCompetencia);
+app.put('/competencias/:id/',controller.updateCompetencia);
+app.delete('/competencias/:id/votos',controller.reiniciaCompetencia);
+app.delete('/competencias/:id/',controller.deleteCompetencia);
 
 app.listen(process.env.PORT, () => console.log(`Server listening on port ${process.env.PORT}`));
