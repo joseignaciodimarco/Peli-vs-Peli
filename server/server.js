@@ -20,6 +20,7 @@ app.get('/generos', controller.getGeneros);
 app.get('/directores', controller.getDirectores);
 app.get('/actores', controller.getActores);
 app.get('/competencias/:id/peliculas', controller.getCompetencia);
+app.get('/competencias/:id/', controller.getCompetenciaId);
 app.get('/competencias/:id/resultados', controller.getResultados);
 app.post('/competencias/:id/voto',controller.votar);
 app.post('/competencias',controller.cargaCompetencia);

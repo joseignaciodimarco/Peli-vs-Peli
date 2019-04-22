@@ -212,12 +212,30 @@ deleteCompetencia = (req, res) => {
 }
 
 updateCompetencia = (req, res) => {
-    console.log('hola voy a editar', req.params.id);
-    console.log('hola voy a editar', req.body.nombre);
     con.query('UPDATE competencia SET nombre = ? WHERE id = ?', [req.body.nombre, req.params.id], (err, result, fields) => {
         if (err) throw err;
         console.log(result);
         res.status(200).send('Competencia editada con exito');
+    });
+}
+
+getCompetenciaId = (req, res) => {
+    let query = "SELECT c.nombre, g.nombre AS genero_nombre, d.nombre AS director_nombre, a.nombre AS actor_nombre  FROM competencia AS c" +
+    " LEFT JOIN genero AS g ON c.genero_id = g.id"+
+    " LEFT JOIN director AS d ON c.director_id = d.id"+
+    " LEFT JOIN actor AS a ON c.actor_id = a.id"+
+    " WHERE c.id = " + req.params.id
+    con.query(query, (err, result, fields) => {
+        if (err) throw err;
+
+        let resultado = {
+           nombre: result[0].nombre,
+           genero_nombre: result[0].genero_nombre,
+           director_nombre: result[0].director_nombre,
+           actor_nombre: result[0].actor_nombre
+        }
+        
+        res.status(200).send(resultado);
     });
 }
 
@@ -232,5 +250,6 @@ module.exports = {
     getDirectores,
     getActores,
     deleteCompetencia,
-    updateCompetencia
+    updateCompetencia,
+    getCompetenciaId
 }
